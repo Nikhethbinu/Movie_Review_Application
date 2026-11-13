@@ -1,0 +1,42 @@
+#--------SignedUP----------------
+###
+POST http://127.0.0.1:8000/signup/
+Content-Type: application/json
+
+{
+    "first_name":"Nikheth",
+    "username":"Nikheth",
+    "password":"Nikheth@22"
+}
+
+###
+POST http://127.0.0.1:8000/signup/
+Content-Type: application/json
+
+{
+    "first_name":"Anand",
+    "username":"Anand",
+    "password":"Anand@22"
+}
+#-------------UserListView---------------
+###
+GET http://127.0.0.1:8000/user/
+Accept: application/json
+
+#-------------------MovieCreateViewall----------
+###
+POST http://127.0.0.1:8000/movie/
+Content-Type: application/json
+Authorization: Basic Nikheth:Nikheth@22
+
+{
+    "title": "Khalifa",
+    "description": "A Malayalam action crime thriller directed by Vysakh. The story follows Aamir Ali, who discovers his family's legacy in gold smuggling and enters the underworld to protect his family's empire.",
+    "release_year": 2026,
+    "genre": "Action, Crime, Thriller"
+}
+
+###
+GET http://127.0.0.1:8000/movie/
+Accept: application/json
+Authorization: Basic Nikheth:Nikheth@22
