@@ -13,7 +13,7 @@ class MovieDb(models.Model):
 class ReviewDb(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     movie = models.ForeignKey(MovieDb, on_delete=models.CASCADE)
-    rating = models.IntegerField(
+    rating = models.DecimalField(max_digits=3,decimal_places=1,
         validators=[MinValueValidator(1),MaxValueValidator(5)]
     )
     comment = models.TextField()

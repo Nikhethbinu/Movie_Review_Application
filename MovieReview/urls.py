@@ -24,5 +24,6 @@ urlpatterns = [
     path('user/',views.UserListView.as_view()),
     path('movie/',views.MovieListCreateView.as_view()),
     path('movie/<int:pk>/',views.MovieRetriveUpdateDeleteView.as_view()),
-    path('review/',views.ReviewcreateListView.as_view())
+    path('review/',views.ReviewcreateListView.as_view()),
+    path('review/<int:pk>/',views.ReviewRetriveDeleteView.as_view())
 ]

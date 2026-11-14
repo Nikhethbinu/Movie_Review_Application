@@ -93,3 +93,30 @@ class ReviewcreateListView(APIView):
                     "data": serializer_instances.data
                 })
         return Response(data=serializer_instances.errors)
+
+class ReviewRetriveDeleteView(APIView):
+    def get(self,request,pk):
+        review = get_object_or_404(MovieDb,id=pk)
+        qs = ReviewDb.objects.filter(movie=review)
+        serializer_instances = ReviewSerializer(qs,many=True)
+        return Response(data=serializer_instances.data)
+
+    def put(self,request,pk):
+        review = get_object_or_404(ReviewDb,id=pk)
+        if review.user != request.user:
+            return Response({"error": "Access Denied"})
+        serializers_instances = ReviewSerializer(review,data=request.data)
+        if serializers_instances.is_valid():
+            serializers_instances.save()
+            return Response(data={
+                "Message":"Review Updated Succeesfully",
+                "Details":serializers_instances.data
+            })
+        return Response(data=serializers_instances.errors)
+
+    def delete(self,request,pk):
+        review = get_object_or_404(ReviewDb,id=pk)
+        if review.user == request.user:
+            review.delete()
+            return Response(data={"Message":"Review deleted"})
+        return Response({"error": "Access Denied"})

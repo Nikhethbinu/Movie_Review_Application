@@ -89,10 +89,33 @@ Authorization: Basic Anand:Anand@22
 ###
 POST http://127.0.0.1:8000/review/
 Content-Type: application/json
-Authorization: Basic Aaron:Aaron@22
+Authorization: Basic Anand:Anand@22
 
 {
-    "movie_id": 1,
-    "rating": 5,
-    "comment": "Excellent movie! Amazing storyline and visuals."
+    "movie_id": 3,
+    "rating": 4,
+    "comment": "Theatre Experience"
 }
+#------------ReviewRetriveDeleteUpdate------
+
+###
+GET http://127.0.0.1:8000/review/3/
+Accept: application/json
+Authorization: Basic Aaron:Aaron@22
+
+
+###
+PUT http://127.0.0.1:8000/review/3/
+Content-Type: application/json
+Authorization: Basic Anand:Anand@22
+
+{
+    "movie_id": 3,
+    "rating": 3,
+    "comment": "Bad Theatre Experience"
+}
+
+###
+DELETE http://127.0.0.1:8000/review/3/
+Accept: application/json
+Authorization: Basic Anand:Anand@22
