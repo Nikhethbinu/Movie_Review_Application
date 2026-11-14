@@ -4,9 +4,9 @@ POST http://127.0.0.1:8000/signup/
 Content-Type: application/json
 
 {
-    "first_name":"Nikheth",
-    "username":"Nikheth",
-    "password":"Nikheth@22"
+    "first_name":"Aaron",
+    "username":"Aaron",
+    "password":"Aaron@22"
 }
 
 ###
@@ -37,6 +37,62 @@ Authorization: Basic Nikheth:Nikheth@22
 }
 
 ###
+POST http://127.0.0.1:8000/movie/
+Content-Type: application/json
+Authorization: Basic Anand:Anand@22
+
+{
+  "title": "I'm Game",
+  "description": "A Malayalam sports drama directed by Nahas Hidayath, featuring an intense story involving football, ambition, friendship and competition.",
+  "release_year": 2026,
+  "genre": "Sports Drama Thriller",
+  "created_at": "2026-11-13T09:27:32.129580Z",
+  "created_by": 3
+}
+
+
+###
 GET http://127.0.0.1:8000/movie/
 Accept: application/json
 Authorization: Basic Nikheth:Nikheth@22
+
+#-------------MovieRetriveUpdateDelete---------------
+###
+GET http://127.0.0.1:8000/movie/
+Accept: application/json
+Authorization: Basic Anand:Anand@22
+
+###
+PUT http://127.0.0.1:8000/movie/2/
+Content-Type: application/json
+Authorization: Basic Anand:Anand@22
+
+{
+  "title": "I'm Game",
+  "description": "A Malayalam sports drama directed by Nahas Hidayath, featuring an intense story involving football, ambition, friendship and competition.",
+  "release_year": 2025,
+  "genre": "Sports Drama Thriller",
+  "created_at": "2026-11-13T09:27:32.129580Z",
+  "created_by": 3
+}
+###
+DELETE http://127.0.0.1:8000/movie/2/
+Content-Type: application/json
+Authorization: Basic Anand:Anand@22
+
+#----------------ReviewCreateView---------
+###
+GET http://127.0.0.1:8000/review/
+Accept: application/json
+Authorization: Basic Anand:Anand@22
+
+###
+POST http://127.0.0.1:8000/review/
+Content-Type: application/json
+Authorization: Basic Aaron:Aaron@22
+
+{
+    "movie_id": 1,
+    "rating": 5,
+    "comment": "Excellent movie! Amazing storyline and visuals."
+}

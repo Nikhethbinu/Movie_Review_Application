@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from movies.models import MovieDb
+from movies.models import MovieDb,ReviewDb
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,4 +18,12 @@ class MovieSerializer(serializers.ModelSerializer):
         model = MovieDb
         fields =["title","description","release_year","genre","created_at","created_by"]
         read_only_fields =["created_at","created_by"]
-    
+
+class ReviewSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username',read_only=True)
+    title = serializers.CharField(source='movie.title',read_only=True)
+    movie_id = serializers.IntegerField(write_only=True)
+    class Meta:
+        model = ReviewDb
+        fields = ["movie_id","username","title","rating","comment","created_at"]
+        read_only_fields = ["created_at"]
