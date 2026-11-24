@@ -17,13 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from movies import views
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/',views.SignUpView.as_view()),
     path('user/',views.UserListView.as_view()),
+    path('jwt_login/',TokenObtainPairView.as_view()),
+    path('jwt_refresh/',TokenRefreshView.as_view()),
     path('movie/',views.MovieListCreateView.as_view()),
     path('movie/<int:pk>/',views.MovieRetriveUpdateDeleteView.as_view()),
     path('review/',views.ReviewcreateListView.as_view()),
-    path('review/<int:pk>/',views.ReviewRetriveDeleteView.as_view())
+    path('review/<int:pk>/',views.ReviewRetriveDeleteView.as_view()),
+    path('jwt_logout/',views.JWT_Logout.as_view()),
 ]

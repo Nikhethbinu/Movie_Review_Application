@@ -14,32 +14,54 @@ POST http://127.0.0.1:8000/signup/
 Content-Type: application/json
 
 {
-    "first_name":"Anand",
-    "username":"Anand",
-    "password":"Anand@22"
+    "first_name":"Balu",
+    "username":"Balu",
+    "password":"Balu@22"
 }
+#--------------jwtLogin------------------
+
+###
+POST http://127.0.0.1:8000/jwt_login/
+Content-Type: application/json
+
+{
+    "username":"Balu",
+    "password":"Balu@22"
+}
+
+###
+POST http://127.0.0.1:8000/jwt_refresh/
+Content-Type: application/json
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTU0MjcxNSwiaWF0IjoxNzk1NDU2MzE1LCJqdGkiOiIwY2E2YzQ2ODRhMzc0Yzk2YWYxNDJlOGJlYmVmZjljNyIsInVzZXJfaWQiOiIxIn0.uKUcsG-QTFwY947J29VPJjQmrEDGiRO0nqFfvBb4DyM"
+}
+
+
+
 #-------------UserListView---------------
 ###
 GET http://127.0.0.1:8000/user/
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU2NzA3LCJpYXQiOjE3OTU0NTY0MDcsImp0aSI6IjIzODUwMzk3ZWQ1MjQ3MDE5NjVhMjUwNDljMjliN2RhIiwidXNlcl9pZCI6IjEifQ.IsO-kOghnM8qYqCQqZXsX8zBjy4maLGbTI8oUuzimzc
 
 #-------------------MovieCreateViewall----------
 ###
 POST http://127.0.0.1:8000/movie/
 Content-Type: application/json
-Authorization: Basic Nikheth:Nikheth@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU2NzA3LCJpYXQiOjE3OTU0NTY0MDcsImp0aSI6IjIzODUwMzk3ZWQ1MjQ3MDE5NjVhMjUwNDljMjliN2RhIiwidXNlcl9pZCI6IjEifQ.IsO-kOghnM8qYqCQqZXsX8zBjy4maLGbTI8oUuzimzc
 
 {
-    "title": "Khalifa",
-    "description": "A Malayalam action crime thriller directed by Vysakh. The story follows Aamir Ali, who discovers his family's legacy in gold smuggling and enters the underworld to protect his family's empire.",
+    "title": "Bouma",
+    "description": "A Malayalam dark thriller Movie with Script",
     "release_year": 2026,
-    "genre": "Action, Crime, Thriller"
+    "genre": "Horror Thriller"
 }
 
 ###
 POST http://127.0.0.1:8000/movie/
 Content-Type: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU2ODYwLCJpYXQiOjE3OTU0NTY1NjAsImp0aSI6IjE5OTY4N2QzZmM1MTRlMGY5MzA4MzI5ZWIwYzlhY2Y3IiwidXNlcl9pZCI6IjMifQ.w60-fL8r3KRCo9urfGU5M8iVXmuV_lF9FxHK-1Wc9TU
 
 {
   "title": "I'm Game",
@@ -54,18 +76,18 @@ Authorization: Basic Anand:Anand@22
 ###
 GET http://127.0.0.1:8000/movie/
 Accept: application/json
-Authorization: Basic Nikheth:Nikheth@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU1ODE0LCJpYXQiOjE3OTU0NTU1MTQsImp0aSI6IjQ4ZWRmZWE2YTdmNTRkNzdhOWQzOTI1MjlkZDI2YWM4IiwidXNlcl9pZCI6IjEifQ.nmkNzd6cpCk2EGN-JFqw6p8Y0RqA3MgFtcpbyQRy3lM
 
 #-------------MovieRetriveUpdateDelete---------------
 ###
-GET http://127.0.0.1:8000/movie/
+GET http://127.0.0.1:8000/movie/10/
 Accept: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU2ODYwLCJpYXQiOjE3OTU0NTY1NjAsImp0aSI6IjE5OTY4N2QzZmM1MTRlMGY5MzA4MzI5ZWIwYzlhY2Y3IiwidXNlcl9pZCI6IjMifQ.w60-fL8r3KRCo9urfGU5M8iVXmuV_lF9FxHK-1Wc9TU
 
 ###
 PUT http://127.0.0.1:8000/movie/2/
 Content-Type: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU2ODYwLCJpYXQiOjE3OTU0NTY1NjAsImp0aSI6IjE5OTY4N2QzZmM1MTRlMGY5MzA4MzI5ZWIwYzlhY2Y3IiwidXNlcl9pZCI6IjMifQ.w60-fL8r3KRCo9urfGU5M8iVXmuV_lF9FxHK-1Wc9TU
 
 {
   "title": "I'm Game",
@@ -76,38 +98,38 @@ Authorization: Basic Anand:Anand@22
   "created_by": 3
 }
 ###
-DELETE http://127.0.0.1:8000/movie/2/
+DELETE http://127.0.0.1:8000/movie/7/
 Content-Type: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Basic Nikheth:Nikheth@22
 
 #----------------ReviewCreateView---------
 ###
 GET http://127.0.0.1:8000/review/
 Accept: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU3MDE2LCJpYXQiOjE3OTU0NTY3MTYsImp0aSI6IjFhNzFiNzEzMDQ3YTRjOWE5MTI3MzEzYjkyODQ4NDQ3IiwidXNlcl9pZCI6IjUifQ.c1oFBb_dnA1TyUe3K6nKoD6T15rx_TUo6TeFo4n5DDY
 
 ###
 POST http://127.0.0.1:8000/review/
 Content-Type: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU3MDE2LCJpYXQiOjE3OTU0NTY3MTYsImp0aSI6IjFhNzFiNzEzMDQ3YTRjOWE5MTI3MzEzYjkyODQ4NDQ3IiwidXNlcl9pZCI6IjUifQ.c1oFBb_dnA1TyUe3K6nKoD6T15rx_TUo6TeFo4n5DDY
 
 {
     "movie_id": 3,
-    "rating": 4,
-    "comment": "Theatre Experience"
+    "rating": 3.5,
+    "comment": "Average Movie"
 }
 #------------ReviewRetriveDeleteUpdate------
 
 ###
 GET http://127.0.0.1:8000/review/3/
 Accept: application/json
-Authorization: Basic Aaron:Aaron@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU3MDE2LCJpYXQiOjE3OTU0NTY3MTYsImp0aSI6IjFhNzFiNzEzMDQ3YTRjOWE5MTI3MzEzYjkyODQ4NDQ3IiwidXNlcl9pZCI6IjUifQ.c1oFBb_dnA1TyUe3K6nKoD6T15rx_TUo6TeFo4n5DDY
 
 
 ###
 PUT http://127.0.0.1:8000/review/3/
 Content-Type: application/json
-Authorization: Basic Anand:Anand@22
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU3MDE2LCJpYXQiOjE3OTU0NTY3MTYsImp0aSI6IjFhNzFiNzEzMDQ3YTRjOWE5MTI3MzEzYjkyODQ4NDQ3IiwidXNlcl9pZCI6IjUifQ.c1oFBb_dnA1TyUe3K6nKoD6T15rx_TUo6TeFo4n5DDY
 
 {
     "movie_id": 3,
@@ -116,6 +138,14 @@ Authorization: Basic Anand:Anand@22
 }
 
 ###
-DELETE http://127.0.0.1:8000/review/3/
-Accept: application/json
-Authorization: Basic Anand:Anand@22
+DELETE http://127.0.0.1:8000/review/7/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDU2MTU1LCJpYXQiOjE3OTU0NTU4NTUsImp0aSI6ImZlOWY5MDI4YmE5MTQzYmU5NmJiM2FmMjMwYWI0ZmZmIiwidXNlcl9pZCI6IjEifQ.VT892ovdRlPwEuW4cpr2Dt2cKsc5v080OIvla4D1HaY
+
+###
+POST http://127.0.0.1:8000/jwt_logout/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1NDk0MTcxLCJpYXQiOjE3OTU0OTM4NzEsImp0aSI6IjYzZTRlNjY5MjgxYzRkOWQ5MzM5ODk3ZmE5NTA0OTBiIiwidXNlcl9pZCI6IjUifQ.wCVVLFPxFJprA3NlLyt36U5sFXcL-ObYbF1bnWaZdHo
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTU4MDI3MSwiaWF0IjoxNzk1NDkzODcxLCJqdGkiOiIxODgxYTY5NTA2NjY0YWE4YjZiZDVkMjIwZGQwZGEwZSIsInVzZXJfaWQiOiI1In0.BVHd-jYoQ6YcJiZWODMWZbKi9x438UiWQcHVZZKBusA"
+}

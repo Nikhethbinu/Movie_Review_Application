@@ -16,8 +16,8 @@ class UserSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieDb
-        fields =["title","description","release_year","genre","created_at","created_by"]
-        read_only_fields =["created_at","created_by"]
+        fields =["id","title","description","release_year","genre","created_at","created_by"]
+        read_only_fields =["id","created_at","created_by"]
 
 class ReviewSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username',read_only=True)

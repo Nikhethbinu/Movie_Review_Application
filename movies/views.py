@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from rest_framework import permissions,authentication
 from movies.models import MovieDb,ReviewDb 
 from rest_framework import serializers
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class SignUpView(APIView):
     def post(self,request):
@@ -26,7 +27,6 @@ class UserListView(APIView):
 
 class MovieListCreateView(APIView):
     permission_classes =[permissions.IsAuthenticated]
-    authentication_classes = [authentication.BasicAuthentication]
     def post(self,request):
         form_data = request.data
         serializers_instances = MovieSerializer(data=form_data)
@@ -38,13 +38,13 @@ class MovieListCreateView(APIView):
         return Response(data=serializers_instances.errors,status=400)
 
     def get(self,request):
-        qs = MovieDb.objects.all()
+        qs = MovieDb.objects.filter(created_by=request.user)
         serializers_instances = MovieSerializer(qs,many=True)
         return Response(data=serializers_instances.data)
 
 class MovieRetriveUpdateDeleteView(APIView):
     permission_classes =[permissions.IsAuthenticated]
-    authentication_classes = [authentication.BasicAuthentication]
+
     def get(self,request,pk):
         movie = get_object_or_404(MovieDb,id=pk)
         if movie.created_by == request.user:
@@ -73,7 +73,7 @@ class MovieRetriveUpdateDeleteView(APIView):
 
 class ReviewcreateListView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = [authentication.BasicAuthentication]
+    
     def get(self,request):
         movie = ReviewDb.objects.all()
         serializer_instances = ReviewSerializer(movie,many=True)
@@ -120,3 +120,17 @@ class ReviewRetriveDeleteView(APIView):
             review.delete()
             return Response(data={"Message":"Review deleted"})
         return Response({"error": "Access Denied"})
+
+class JWT_Logout(APIView):
+    def post(self,request):
+        try:
+            refresh_token=request.data.get("refresh")
+            token=RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({
+                "message":"Logout success"
+            })
+        except Exception:
+            return Response({
+                "Error":"Invalid refresh token"
+            })
